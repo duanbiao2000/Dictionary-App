@@ -11,13 +11,20 @@ import com.ahmed_apps.dictionary_app.domain.model.WordItem
  * @author Ahmed Guedmioui
  */
 
-fun WordItemDto.toWordItem() = WordItem (
+/**
+ * 将WordItemDto转换为WordItem对象。
+ * 对word、meanings和phonetic字段进行安全调用，并提供默认值。
+ *
+ * @return 转换后的WordItem对象。
+ */
+fun WordItemDto.toWordItem() = WordItem(
     word = word ?: "",
     meanings = meanings?.map {
         it.toMeaning()
     } ?: emptyList(),
     phonetic = phonetic ?: ""
 )
+
 
 fun MeaningDto.toMeaning() = Meaning(
     definition = definitionDtoToDefinition(definitions?.get(0)),
